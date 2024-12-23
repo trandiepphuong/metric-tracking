@@ -1,0 +1,17 @@
+{
+  "name": "metric-tracking",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "scripts": {
+    "test:express": "cd express && yarn test",
+    "test:nest": "cd nest && yarn test",
+    "bootstrap": "cd express && yarn && cd ../nest && yarn"
+  },
+  "engines": {
+    "node": ">=20.10.0 && <=20.17.0"
+  },
+  "packageManager": "yarn@1.22.21"
+}

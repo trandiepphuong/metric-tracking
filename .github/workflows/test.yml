@@ -30,10 +30,10 @@ jobs:
       - run: corepack enable
 
       - name: Install deps
-        run: yarn
+        run: yarn run bootstrap
 
       - name: Run test express
-        run: cd express && yarn test
+        run: yarn run test:express
 
       - name: Run test nest
-        run: cd ../nest && yarn test
+        run: yarn run test:nest
