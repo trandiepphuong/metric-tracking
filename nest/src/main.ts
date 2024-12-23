@@ -1,15 +1,14 @@
+import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { ConfigService } from '@nestjs/config';
+import { AllExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const port = new ConfigService().get('PORT') || 3000;
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new AllExceptionFilter());
   await app.listen(port);
   console.log(`Application listening on port ${port}`);
 }

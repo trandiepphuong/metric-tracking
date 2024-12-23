@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import type { TypeEnum } from '../../enums/type';
+import { TypeEnum } from '../../enums/type';
 import { convertUnit } from '../../utils/unitConversion';
-import type { Repository } from 'typeorm';
-import type { CreateMetricDto } from './dtos/create-metric.dto';
+import { Repository } from 'typeorm';
+import { CreateMetricDto } from './dtos/create-metric.dto';
 import { MetricEntity } from './metric.entity';
 
 @Injectable()

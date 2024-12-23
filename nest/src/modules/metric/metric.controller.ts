@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import type { TypeEnum } from '../../enums/type';
-import type { CreateMetricDto } from './dtos/create-metric.dto';
+import { TypeEnum } from '../../enums/type';
+import { CreateMetricDto } from './dtos/create-metric.dto';
 import { MetricService } from './metric.service';
 
 @Controller('metrics')

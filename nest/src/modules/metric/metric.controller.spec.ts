@@ -1,10 +1,9 @@
-import { ValidationPipe, type INestApplication } from '@nestjs/common';
-import { Test, type TestingModule } from '@nestjs/testing';
+import { ValidationPipe, INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { TypeEnum } from '../../enums/type';
 import { MetricController } from './metric.controller';
 import { MetricService } from './metric.service';
-import { HttpExceptionFilter } from '../../common/filters/http-exception.filter';
 
 describe('MetricController (e2e)', () => {
   let app: INestApplication;
@@ -28,9 +27,7 @@ describe('MetricController (e2e)', () => {
       .compile();
 
     app = module.createNestApplication();
-    app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
-    // app.useGlobalFilters(new HttpExceptionFilter());
-
+    app.useGlobalPipes(new ValidationPipe());
     await app.init();
   });
 
@@ -69,18 +66,18 @@ describe('MetricController (e2e)', () => {
         .expect(400)
         .expect({
           message: [
-            'property userId should not exist',
-            'property type should not exist',
-            'property value should not exist',
-            'property unit should not exist',
-            'property date should not exist'
+            "userId must be a string",
+            "type must be one of the following values: Distance, Temperature",
+            "value must be a number conforming to the specified constraints",
+            "unit must be a string",
+            "date must be a valid ISO 8601 date string"
           ],
-          error: 'Bad Request',
+          error: "Bad Request",
           statusCode: 400
-        });
+        })
     });
   })
-  
+
   it('/GET metrics (getMetricsByType)', async () => {
     const userId = '1';
     const type = TypeEnum.TEMPERATURE;

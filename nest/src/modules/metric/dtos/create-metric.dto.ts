@@ -1,9 +1,8 @@
 import {
-  IsString,
-  IsNumber,
-  IsOptional,
-  IsEnum,
   IsDateString,
+  IsEnum,
+  IsNumber,
+  IsString
 } from 'class-validator';
 import { TypeEnum } from '../../../enums/type';
 
