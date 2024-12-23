@@ -8,7 +8,7 @@ async function bootstrap() {
   const port = new ConfigService().get('PORT') || 3000;
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
   app.useGlobalFilters(new HttpExceptionFilter());
   await app.listen(port);
   console.log(`Application listening on port ${port}`);

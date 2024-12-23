@@ -18,7 +18,7 @@ export class MetricController {
         return await this.metricService.getMetrics(type, userId);
     }
 
-    @Get()
+    @Get('/chart')
     getChartData(
         @Query('userId') userId: string,
         @Query('period') period: number,

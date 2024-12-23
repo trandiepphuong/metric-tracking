@@ -21,6 +21,6 @@ export class CreateMetricDto {
   unit: string;
 
   @IsDateString()
-  @IsOptional()
-  date: string;
+  // @IsOptional()
+  date: Date;
 }
